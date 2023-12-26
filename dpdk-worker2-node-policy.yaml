@@ -1,0 +1,16 @@
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
+metadata:
+  name: dpdk-worker-2-node-policy
+  namespace: openshift-sriov-network-operator
+spec:
+  resourceName: worker2_intel_nic
+  nodeSelector:
+    kubernetes.io/hostname: worker2.dsp.lab
+  priority: 10
+  mtu: 1500
+  numVfs: 5
+  nicSelector:
+    pfNames: ["ens3f1"]
+    rootDevices: ["0000:d8:00.1"]
+  deviceType: vfio-pci
